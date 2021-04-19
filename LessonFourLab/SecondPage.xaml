@@ -1,6 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>  
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LessonFourLab.SecondPage" Title="SecondPage">  
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LessonFourLab.SecondPage" Title="SecondPage" x:Name="SecondPage1">  
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">  
         <Label Text="Welcome to the Second Page of this application" FontSize="Medium" />  
-        <Button Text="Navigate to First Page" BackgroundColor="Green" Clicked="OnBtn_Clicked" /> </StackLayout>  
+        <Button Text="Navigate to First Page" BackgroundColor="LightBlue" Clicked="OnBtn_Clicked" />
+
+        <ListView x:Name="ClassmatesList" ItemsSource="{Binding Source={x:Reference SecondPage1}, Path=BindingContext.MyList}" IsVisible="True">
+
+            <ListView.Header>  
+                <StackLayout Orientation="Horizontal">  
+                    <Button Text="Add New" Clicked="Button_Clicked"></Button>  
+                    <Button x:Name="Delete" Text="Delete" Clicked="Delete_Clicked"></Button>  
+                </StackLayout>  
+            </ListView.Header>  
+        <ListView.ItemTemplate>  
+            <DataTemplate>
+
+                <ViewCell>  
+                    <ViewCell.ContextActions>  
+                        <MenuItem Text="Delete Item" Clicked="MenuItem_Delete" CommandParameter="{Binding .}">  
+                        </MenuItem>  
+                    </ViewCell.ContextActions>  
+                    <StackLayout Orientation="Horizontal">  
+                        <Image Source="{Binding Image}" HeightRequest="50" WidthRequest="50"></Image>  
+                        <Label Text="{Binding Id, StringFormat='ID: {0}'}"></Label>  
+                        <Label Text="{Binding Name}"></Label>  
+                        <Label Text="{Binding Address}"></Label>  
+                    </StackLayout>  
+                </ViewCell>  
+  
+            </DataTemplate>  
+        </ListView.ItemTemplate> 
+
+        </ListView>
+
+
+
+    </StackLayout>  
+
+
 </ContentPage>  
