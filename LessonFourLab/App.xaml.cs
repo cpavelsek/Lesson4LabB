@@ -11,6 +11,12 @@ namespace LessonFourLab
             InitializeComponent();
 
             MainPage = new MainPage();
+
+            var navPage = new NavigationPage(MainPage);
+            this.MainPage = navPage;
+
+            MainPage = new NavigationPage(new LessonFourLab.MainPage());
+
         }
 
         protected override void OnStart()
