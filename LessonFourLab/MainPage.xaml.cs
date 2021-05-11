@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+[assembly: ExportFont("MaterialIconsRegular.ttf", Alias = "Material")]
+
 namespace LessonFourLab
 {
     public partial class MainPage : ContentPage

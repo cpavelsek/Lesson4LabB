@@ -2,69 +2,120 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LessonFourLab.MainPage"
-             Title="First Page">
+             Title="Home"
+             xmlns:weatherVm="clr-namespace:LessonFourLab.ViewModels" x:DataType="weatherVm:WeatherViewModel">
 
+    <ContentPage.BindingContext>
+        <weatherVm:WeatherViewModel/>
+    </ContentPage.BindingContext>
+    
+     <ContentPage.Content>
+            <Label Text="Test App" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </ContentPage.Content>
+    
+    
     <StackLayout Margin="20,35,20,25">
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-     
-
-
-        <Label
-               TextColor="Blue"
-       FontAttributes="Italic"
-       FontSize="22"
-       TextDecorations="Underline"
-       HorizontalOptions="Center">
-
-                <Label.FormattedText>
-        <FormattedString>
-            <Span Text="This sentence contains " />
-            <Span Text="words that are emphasized, "
-                  FontAttributes="Italic" />
-            <Span Text="and underlined."
-                  TextDecorations="Underline" />
-        </FormattedString>
-    </Label.FormattedText>
-
-        </Label>
-
-        <Label Text="This is the first page of this application" FontSize="Medium" />  
-        <Button Text="Navigate to Second Page" Clicked="Onbtn_Clicked"  BackgroundColor="LightBlue"> </Button> 
 
 
 
-                <Label Text="ROTATION"
-               BindingContext="{x:Reference slider}"
-               Rotation="{Binding Path=Value}"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
+        <Button Text="Click here to add students" Clicked="Onbtn_Clicked"  BackgroundColor="LightBlue"> </Button>
 
-        <Slider x:Name="slider"
-                Maximum="360"
-                VerticalOptions="CenterAndExpand" />
+      
 
-        <Label BindingContext="{x:Reference slider}"
-               Text="{Binding Value, StringFormat='The angle is {0:F0} degrees'}"
-               FontAttributes="Bold"
-               FontSize="Large"
-               HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand" />
+       
 
 
-        <Entry Placeholder="Enter text"
-               TextChanged="OnEntryTextChanged"
-               Completed="OnEntryCompleted"/>
+        <StackLayout Padding="20,40,20,20">
+            <Entry Text="{Binding City, Mode=TwoWay}"
+           Placeholder="Search City"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="City:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.name}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Country:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.sys.country}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Temperature:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.main.temp}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Humidity:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.main.humidity}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Weather Main Status:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.weather[0].main}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Weather Status:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.weather[0].description}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Weather Icon:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Image Source="{Binding IconImageString}"
+                   WidthRequest="30"
+                   HeightRequest="30"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Wind Speed:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.wind.speed}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
 
 
-        
+    </StackLayout>
 
-    </StackLayout>  
+    <NavigationPage.TitleView>
+        <AbsoluteLayout VerticalOptions="CenterAndExpand">
 
-   
+            <Button Text="e5d2"  FontFamily="Material" Image="menu.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0,40,40" >
+               
+            </Button>
+            <Button Image="shoppingcart.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,40,40" />
+            <Button Image="globe.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.8,0,40,40"/>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
 
 </ContentPage>

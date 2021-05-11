@@ -70,12 +70,15 @@ namespace LessonFourLab
         private void Button_Clicked(object sender, EventArgs e)
         {
             var classmatesLength = myList.Count +1;
-            MyList.Add(new Classmates() { Id = classmatesLength++, Name = "Student", Address = "123 Mill st.", Image = "usa.png" });
+            MyList.Add(new Classmates() { Id = classmatesLength++, Name = name.Text, Address = address.Text, Image = "usa.png" });
+
         }
 
         private void Delete_Clicked(object sender, EventArgs e)
         {
             MyList.Remove(MyList.LastOrDefault());
+
+
         }
 
         private void MenuItem_Delete(object sender, EventArgs e)
@@ -83,6 +86,7 @@ namespace LessonFourLab
             var mi = sender as MenuItem;
             MyList.Remove((Classmates)mi.CommandParameter);
         }
+
 
 
 
